@@ -8,11 +8,11 @@
         <version>2.7.18</version>
         <relativePath/>
     </parent>
-    <groupId>com.aiyowei</groupId>
-    <artifactId>weibao</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>weibao</name>
-    <description>weibao</description>
+    <groupId>com.tencent</groupId>
+    <artifactId>springboot-wxcloudrun</artifactId>
+    <version>1.0</version>
+    <name>springboot-wxcloudrun</name>
+    <description>Demo project for Spring Boot</description>
     <url/>
     <licenses>
         <license/>
