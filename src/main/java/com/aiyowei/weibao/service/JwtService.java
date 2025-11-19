@@ -23,7 +23,16 @@ public class JwtService {
 
     @PostConstruct
     public void init() {
-        this.signingKey = Keys.hmacShaKeyFor(properties.getSecret().getBytes(StandardCharsets.UTF_8));
+        // Defensive checks to give a clear error when configuration is missing.
+        String secret = properties.getSecret();
+        if (!StringUtils.hasText(secret)) {
+            throw new IllegalStateException("Missing configuration: 'jwt.secret' must be set (must be at least 32 bytes). Set it in application.yml or environment variables.");
+        }
+        byte[] keyBytes = secret.getBytes(StandardCharsets.UTF_8);
+        if (keyBytes.length < 32) {
+            throw new IllegalStateException("Invalid configuration: 'jwt.secret' must be at least 32 bytes long (current length: " + keyBytes.length + "). Provide a longer secret.");
+        }
+        this.signingKey = Keys.hmacShaKeyFor(keyBytes);
     }
 
     public String generateToken(Long userId) {
@@ -67,5 +76,3 @@ public class JwtService {
         return value;
     }
 }
-
-

@@ -15,3 +15,10 @@ spring:
 
 mybatis:
   mapper-locations: classpath*:mapper/*Mapper.xml
+
+# Development JWT configuration - replace or override in production via environment variables
+jwt:
+  # At least 32 bytes (characters) required for HMAC key.
+  secret: dev-secret-change-me-20251119-abcdef
+  # expiration is optional; default is 86400 seconds
+  # expiration: 86400
